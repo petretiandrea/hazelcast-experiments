@@ -1,0 +1,43 @@
+name: Deploy microservice
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  TARGET_PLATFORMS: linux/amd64
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Getting docker metainfo
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: petretiandrea/spring-hazelcast-demo
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}.{{patch}}
+      - name: Build and push docker image
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: ${{ env.TARGET_PLATFORMS }}
