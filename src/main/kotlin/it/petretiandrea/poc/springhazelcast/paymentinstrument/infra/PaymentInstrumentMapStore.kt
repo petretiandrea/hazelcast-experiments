@@ -1,23 +1,24 @@
 package it.petretiandrea.poc.springhazelcast.paymentinstrument.infra
 
 import com.hazelcast.map.MapStore
+import com.hazelcast.spring.context.SpringAware
 import it.petretiandrea.poc.springhazelcast.paymentinstrument.domain.PaymentInstrument
 
+@SpringAware
 class PaymentInstrumentMapStore(
     private val paymentInstrumentMongoRepository: PaymentInstrumentMongoRepository
 ) : MapStore<String, PaymentInstrument> {
 
-    override fun load(key: String): PaymentInstrument {
+    override fun load(key: String): PaymentInstrument? {
         return paymentInstrumentMongoRepository
             .findById(key)
-            .single()
-            .block()!!
+            .block()
     }
 
     override fun loadAll(keys: MutableCollection<String>): MutableMap<String, PaymentInstrument> {
         val map = mutableMapOf<String, PaymentInstrument>()
         for (id in keys) {
-            map[id] = load(id)
+            load(id)?.let { map[id] = it }
         }
 
         return map;

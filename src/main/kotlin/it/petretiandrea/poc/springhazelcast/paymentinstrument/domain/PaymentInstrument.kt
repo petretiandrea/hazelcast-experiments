@@ -6,8 +6,8 @@ typealias PAR = String
 
 data class PaymentInstrument(
     val id: PaymentInstrumentId,
-    private var tokens: List<PaymentToken>,
-    private var par: PAR?
+    var tokens: List<PaymentToken>,
+    var par: PAR?
 ){
     fun addToken(token: PaymentToken) {
         this.tokens += token
