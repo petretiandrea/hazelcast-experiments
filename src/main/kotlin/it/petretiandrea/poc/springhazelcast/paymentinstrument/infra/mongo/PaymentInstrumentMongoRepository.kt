@@ -1,4 +1,4 @@
-package it.petretiandrea.poc.springhazelcast.paymentinstrument.infra
+package it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.mongo
 
 import it.petretiandrea.poc.springhazelcast.paymentinstrument.domain.PaymentInstrument
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository

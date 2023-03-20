@@ -1,8 +1,9 @@
-package it.petretiandrea.poc.springhazelcast.paymentinstrument.infra
+package it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.hazelcast
 
 import com.hazelcast.map.MapStore
 import com.hazelcast.spring.context.SpringAware
 import it.petretiandrea.poc.springhazelcast.paymentinstrument.domain.PaymentInstrument
+import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.mongo.PaymentInstrumentMongoRepository
 
 @SpringAware
 class PaymentInstrumentMapStore(

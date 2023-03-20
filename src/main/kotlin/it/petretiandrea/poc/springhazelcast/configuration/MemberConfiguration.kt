@@ -6,9 +6,9 @@ import com.hazelcast.config.SerializerConfig
 import com.hazelcast.core.Hazelcast
 import com.hazelcast.core.HazelcastInstance
 import it.petretiandrea.poc.springhazelcast.paymentinstrument.domain.PaymentInstrument
-import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.HazelcastPaymentInstrumentRepository
-import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.PaymentInstrumentMapStore
-import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.PaymentInstrumentMongoRepository
+import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.hazelcast.HazelcastPaymentInstrumentRepository
+import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.hazelcast.PaymentInstrumentMapStore
+import it.petretiandrea.poc.springhazelcast.paymentinstrument.infra.mongo.PaymentInstrumentMongoRepository
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
