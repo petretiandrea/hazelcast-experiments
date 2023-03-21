@@ -28,6 +28,11 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.hazelcast/hazelcast-all
 	implementation("com.hazelcast:hazelcast-all:4.2.7")
 
+	// ignite
+	implementation("org.apache.ignite:ignite-core:2.14.0")
+	implementation("org.apache.ignite:ignite-spring:2.14.0")
+	implementation("com.h2database:h2:1.4.197")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
 }
